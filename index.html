@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,7 +22,7 @@
             padding: 0;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: var(--bg-color);
-            background-image: 
+            background-image:
                 radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.15) 0px, transparent 50%),
                 radial-gradient(at 100% 100%, rgba(56, 189, 248, 0.1) 0px, transparent 50%);
             color: var(--text-color);
@@ -115,12 +116,10 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(255, 255, 255, 0.05),
-                transparent
-            );
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.05),
+                    transparent);
             transition: left 0.7s ease;
         }
 
@@ -190,40 +189,70 @@
         }
 
         @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes float {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(30px, 30px); }
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(30px, 30px);
+            }
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .container { padding: 2rem 1rem; }
-            .site-card { padding: 2rem 1.5rem; }
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            .site-card {
+                padding: 2rem 1.5rem;
+            }
         }
     </style>
     <!-- Use Inter font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
 
     <div class="container">
         <div class="logo-container">
-            <img src="Main-Logo-Large.jpeg" alt="Mike Ray Vision" class="logo" onerror="this.src='https://via.placeholder.com/180?text=MRV'">
+            <img src="Main-Logo-Large.jpeg" alt="Mike Ray Vision" class="logo"
+                onerror="this.src='https://via.placeholder.com/180?text=MRV'">
         </div>
-        
+
         <h1>Mike Ray Vision</h1>
-        <p class="subtitle">Access our digital ecosystem. Select a destination below to proceed to our available platforms.</p>
+        <p class="subtitle">Access our digital ecosystem. Select a destination below to proceed to our available
+            platforms.</p>
 
         <div class="card-grid">
             <a href="MRV_Site/index.html" class="site-card">
@@ -237,13 +266,14 @@
                 <h2 class="card-title">Website V2</h2>
                 <p class="card-desc">The next-generation platform featuring enhanced capabilities and modern design.</p>
             </a>
-            
-            <a href="#" class="site-card" style="opacity: 0.6; cursor: default;">
-                <span class="card-icon">⋯</span>
-                <h2 class="card-title">Future Apps</h2>
-                <p class="card-desc">Additional sites and applications will be integrated here automatically.</p>
+
+            <a href="pdm-assets/index.html" class="site-card">
+                <span class="card-icon">◈</span>
+                <h2 class="card-title">Brand Assets</h2>
+                <p class="card-desc">The official brand kit and asset showcase for Premier Design & Media.</p>
             </a>
         </div>
     </div>
 </body>
+
 </html>
