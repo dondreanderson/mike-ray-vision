@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Premier Design & Media</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="index.html" class="logo">
+                    <div class="logo-text">
+                        <span class="logo-primary">PREMIER</span>
+                        <span class="logo-secondary">DESIGN & MEDIA</span>
+                    </div>
+                </a>
+                <button class="mobile-menu-toggle"><span></span><span></span><span></span></button>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li class="nav-dropdown">
+                        <a href="#">Services <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="services-cad.html">CAD Services</a></li>
+                            <li><a href="services-scanning.html">Laser Scanning</a></li>
+                            <li><a href="services-media.html">Media Production</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="benefits.html">Benefits</a></li>
+                    <li><a href="contact.html" class="active btn-nav">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-hero" style="background: linear-gradient(135deg, var(--color-secondary), var(--color-secondary-light)); min-height: 40vh;">
+        <div class="page-hero-content">
+            <h1 class="page-hero-title">Contact Us</h1>
+            <p class="page-hero-subtitle">Let's discuss your project or career opportunities</p>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Get In Touch</h2>
+                    <p>Whether you need a project quote, have questions about our services, or want to explore career opportunities, we're here to help. Reach out to us today!</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div class="contact-detail-text">
+                                <h3>Office Location</h3>
+                                <p>Atlanta, Georgia<br>Serving all of Georgia</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-detail">
+                            <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                            <div class="contact-detail-text">
+                                <h3>Phone</h3>
+                                <p>(404) 555-0100<br>Mon-Fri: 8AM-6PM EST</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-detail">
+                            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                            <div class="contact-detail-text">
+                                <h3>Email</h3>
+                                <p>info@premierdesignmedia.com<br>We respond within 24 hours</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-detail">
+                            <div class="contact-icon"><i class="fas fa-clock"></i></div>
+                            <div class="contact-detail-text">
+                                <h3>Business Hours</h3>
+                                <p>Monday - Friday: 8:00 AM - 6:00 PM<br>Saturday & Sunday: Closed</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem;">
+                        <h3>Follow Us</h3>
+                        <div class="footer-social" style="margin-top: 1rem;">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h3 style="margin-bottom: 1.5rem;">Send Us a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="inquiryType">I'm interested in:</label>
+                            <select id="inquiryType" name="inquiryType" required>
+                                <option value="">Select an option</option>
+                                <option value="project">Project Quote</option>
+                                <option value="career">Career Opportunity</option>
+                                <option value="general">General Inquiry</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+
+                        <div class="form-group" id="serviceTypeGroup" style="display: none;">
+                            <label for="serviceType">Service Needed:</label>
+                            <select id="serviceType" name="serviceType">
+                                <option value="">Select a service</option>
+                                <option value="cad">CAD Services</option>
+                                <option value="scanning">3D Laser Scanning</option>
+                                <option value="media">Media Production</option>
+                                <option value="multiple">Multiple Services</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" id="positionGroup" style="display: none;">
+                            <label for="position">Position of Interest:</label>
+                            <select id="position" name="position">
+                                <option value="">Select a position</option>
+                                <option value="cad-designer">CAD Drafter/Designer</option>
+                                <option value="scan-tech">3D Scanning Technician</option>
+                                <option value="video-producer">Video Producer/Editor</option>
+                                <option value="project-manager">Project Manager</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" required placeholder="Tell us about your project, career interests, or inquiry..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary form-submit">Send Message</button>
+                        
+                        <div class="success-message" id="successMessage">
+                            <i class="fas fa-check-circle"></i> Thank you! We've received your message and will respond within 24 hours.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <span class="logo-primary">PREMIER</span>
+                        <span class="logo-secondary">DESIGN & MEDIA</span>
+                    </div>
+                    <p>Professional CAD services, 3D laser scanning, and media production throughout Georgia.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="services-cad.html">CAD Services</a></li>
+                        <li><a href="services-scanning.html">3D Laser Scanning</a></li>
+                        <li><a href="services-media.html">Media Production</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="benefits.html">Benefits</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-map-marker-alt"></i> Atlanta, GA</li>
+                        <li><i class="fas fa-phone"></i> (404) 555-0100</li>
+                        <li><i class="fas fa-envelope"></i> info@premierdesignmedia.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 8AM-6PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Premier Design & Media. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
