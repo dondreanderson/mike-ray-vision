@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="Mike Ray Vision - Award-winning filmmaker, actor, writer, voice artist, and entrepreneur. Director of The Helen Lindsey Story and The Productive Lie.">
-    <meta name="keywords" content="Mike Ray, filmmaker, director, actor, voice artist, entertainment, film production">
-    <title>Mike Ray Vision | Director • Actor • Writer • Voice Artist</title>
+    <meta name="keywords" content="Mike Ray, filmmaker, actor, voice artist, entertainment, film production">
+    <title>Mike Ray Vision | Creator • Writer • Actor • Voice Artist</title>
 
     <!-- Fonts -->
     <link
@@ -128,6 +128,13 @@
             list-style: none;
         }
 
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
 
         .nav-links a:hover {
             color: var(--primary-gold);
@@ -159,17 +166,12 @@
 
         .hero-video {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 100vw;
-            height: 56.25vw;
-            /* 16:9 Aspect Ratio */
-            min-height: 100vh;
-            min-width: 177.77vh;
-            /* 16:9 Aspect Ratio */
-            transform: translate(-50%, -50%);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             z-index: 0;
-            pointer-events: none;
         }
 
         .hero-overlay {
@@ -656,10 +658,11 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <iframe class="hero-video"
-            src="https://www.youtube.com/embed/YELVFhUySTk?autoplay=1&mute=1&controls=0&loop=1&playlist=YELVFhUySTk&playsinline=1&modestbranding=1&showinfo=0&rel=0&iv_load_policy=3"
-            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-        </iframe>
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source
+                src="https://www.genspark.ai/api/files/s/krRDyQWo?token=Z0FBQUFBQnBvSHp3ZWNYcGdkWUs3Q3BERFBhdXJ0T0VvUE9lVHJUaDlRU2xQRHdTbHkwRHZLQm8zc2x4dXNPNUkwWU1PVWR3Vkd3Y1JrLVJYd1RDYmtGeWNZZ09iN25xejZ0NzNkTzJmekhNNWFZZ2ozUWxvNEwwbGNsTGg2azZPZzdmUkljMkI5Q0wxZXRTYk94Z2drcE9USEkxajZtenIxUXh5QlhubjdKeC1xTXlEampYb21xYmR1QVZ0MndGLXJtT21nN3RXRHNYU2hXSzJaLVVGMktHckdDaklORlFBVXZpUTA4bUZzYzdJT1plWjRCdl9oNmN0b3FKWG1JZXJaWUFFSVF2a0VhVWxaazA3UlJEZ0s4QzZ1cFRWNGUtVWc9PQ"
+                type="video/mp4">
+        </video>
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1>Mike Ray</h1>
