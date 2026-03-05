@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Mike Ray Vision - Award-winning filmmaker, actor, writer, voice artist, and entrepreneur. Director of The Helen Lindsey Story and The Productive Lie.">
+    <meta name="description"
+        content="Mike Ray Vision - Award-winning filmmaker, actor, writer, voice artist, and entrepreneur. Director of The Helen Lindsey Story and The Productive Lie.">
     <meta name="keywords" content="Mike Ray, filmmaker, director, actor, voice artist, entertainment, film production">
     <title>Mike Ray Vision | Director • Actor • Writer • Voice Artist</title>
-    
+
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
-    
+
     <style>
         * {
             margin: 0;
@@ -67,7 +71,9 @@
         }
 
         @keyframes spin {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         /* Navigation */
@@ -96,7 +102,7 @@
             align-items: center;
         }
 
-       .logo {
+        .logo {
             display: flex;
             align-items: center;
             text-decoration: none;
@@ -153,12 +159,17 @@
 
         .hero-video {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            top: 50%;
+            left: 50%;
+            width: 100vw;
+            height: 56.25vw;
+            /* 16:9 Aspect Ratio */
+            min-height: 100vh;
+            min-width: 177.77vh;
+            /* 16:9 Aspect Ratio */
+            transform: translate(-50%, -50%);
             z-index: 0;
+            pointer-events: none;
         }
 
         .hero-overlay {
@@ -614,6 +625,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Loading Screen -->
     <div id="loading-screen">
@@ -644,9 +656,10 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <video class="hero-video" autoplay muted loop playsinline>
-            <source src="assets/videos/hero-video.mp4" type="video/mp4">
-        </video>
+        <iframe class="hero-video"
+            src="https://www.youtube.com/embed/YELVFhUySTk?autoplay=1&mute=1&controls=0&loop=1&playlist=YELVFhUySTk&playsinline=1&modestbranding=1&showinfo=0&rel=0&iv_load_policy=3"
+            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+        </iframe>
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1>Mike Ray</h1>
@@ -678,10 +691,18 @@
             </div>
             <div class="about-text fade-in">
                 <h3>Award-Winning Filmmaker & Entertainer</h3>
-                <p>Born in Fairbanks, Alaska, Mike Ray grew up in a military family, living across the United States and Germany. His father, an Army sergeant who passed from ALS at 46, left a lasting legacy of determination and resilience.</p>
-                <p>As an award-winning filmmaker, Mike started directing to stay creative and busy, focusing on low-budget productions that achieve a big-budget look. His recent documentary <strong>The Helen Lindsey Story</strong> and episodic feature <strong>The Productive Lie</strong> are currently on the festival circuit.</p>
-                <p>With over 15 years of voice-over experience, Mike brings characters to life with his distinctive voice. He's also the host of PowerTalk radio show and creator of the board game <strong>Journey To The Motherland</strong>.</p>
-                <p>Mike narrated Carl Weber's <strong>The Man in 3B</strong> and continues to expand his presence in film, television, and digital media.</p>
+                <p>Born in Fairbanks, Alaska, Mike Ray grew up in a military family, living across the United States and
+                    Germany. His father, an Army sergeant who passed from ALS at 46, left a lasting legacy of
+                    determination and resilience.</p>
+                <p>As an award-winning filmmaker, Mike started directing to stay creative and busy, focusing on
+                    low-budget productions that achieve a big-budget look. His recent documentary <strong>The Helen
+                        Lindsey Story</strong> and episodic feature <strong>The Productive Lie</strong> are currently on
+                    the festival circuit.</p>
+                <p>With over 15 years of voice-over experience, Mike brings characters to life with his distinctive
+                    voice. He's also the host of PowerTalk radio show and creator of the board game <strong>Journey To
+                        The Motherland</strong>.</p>
+                <p>Mike narrated Carl Weber's <strong>The Man in 3B</strong> and continues to expand his presence in
+                    film, television, and digital media.</p>
             </div>
         </div>
     </section>
@@ -695,42 +716,48 @@
                 <img src="assets/images/director.jpg" alt="The Director" class="service-card-image">
                 <div class="service-card-content">
                     <h3>The Director</h3>
-                    <p>Creating cinematic experiences that emulate big-budget productions on independent budgets. From documentaries to episodic features, I bring stories to life with vision and precision.</p>
+                    <p>Creating cinematic experiences that emulate big-budget productions on independent budgets. From
+                        documentaries to episodic features, I bring stories to life with vision and precision.</p>
                 </div>
             </div>
             <div class="service-card fade-in">
                 <img src="assets/images/actor.jpg" alt="House of Payne" class="service-card-image">
                 <div class="service-card-content">
                     <h3>The Actor</h3>
-                    <p>Featured in House of Payne (BET), First Wives Club (Paramount+), and Zatima (BET+). Bringing authenticity and depth to every character.</p>
+                    <p>Featured in House of Payne (BET), First Wives Club (Paramount+), and Zatima (BET+). Bringing
+                        authenticity and depth to every character.</p>
                 </div>
             </div>
             <div class="service-card fade-in">
                 <img src="assets/images/voice-over.jpg" alt="Voice Over" class="service-card-image">
                 <div class="service-card-content">
                     <h3>Voice Over</h3>
-                    <p>Over 15 years of professional voice-over experience. Narrator of Carl Weber's "The Man in 3B" audiobook and numerous commercial campaigns.</p>
+                    <p>Over 15 years of professional voice-over experience. Narrator of Carl Weber's "The Man in 3B"
+                        audiobook and numerous commercial campaigns.</p>
                 </div>
             </div>
             <div class="service-card fade-in">
                 <img src="assets/images/writer.jpg" alt="The Writer" class="service-card-image">
                 <div class="service-card-content">
                     <h3>The Writer</h3>
-                    <p>Crafting compelling narratives for film and television. Award-winning screenplays that captivate audiences and drive emotional connection.</p>
+                    <p>Crafting compelling narratives for film and television. Award-winning screenplays that captivate
+                        audiences and drive emotional connection.</p>
                 </div>
             </div>
             <div class="service-card fade-in">
                 <img src="assets/images/actor.jpg" alt="Radio Host" class="service-card-image">
                 <div class="service-card-content">
                     <h3>Radio Host</h3>
-                    <p>Host of PowerTalk radio show, engaging audiences with compelling conversations and entertainment industry insights.</p>
+                    <p>Host of PowerTalk radio show, engaging audiences with compelling conversations and entertainment
+                        industry insights.</p>
                 </div>
             </div>
             <div class="service-card fade-in">
                 <img src="assets/images/voice-over.jpg" alt="The Entrepreneur" class="service-card-image">
                 <div class="service-card-content">
                     <h3>The Entrepreneur</h3>
-                    <p>Creator of "Journey To The Motherland" board game and founder of Mike Ray Vision production company. Building brands and businesses in entertainment.</p>
+                    <p>Creator of "Journey To The Motherland" board game and founder of Mike Ray Vision production
+                        company. Building brands and businesses in entertainment.</p>
                 </div>
             </div>
         </div>
@@ -871,10 +898,14 @@
                 <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
             </form>
             <div class="social-links fade-in">
-                <a href="https://www.facebook.com/mike.ray.733" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/A_Mike_Ray_Vision/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.youtube.com/@MikeRayVision" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                <a href="https://www.linkedin.com/in/mikerayvision" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.facebook.com/mike.ray.733" target="_blank" aria-label="Facebook"><i
+                        class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/A_Mike_Ray_Vision/" target="_blank" aria-label="Instagram"><i
+                        class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@MikeRayVision" target="_blank" aria-label="YouTube"><i
+                        class="fab fa-youtube"></i></a>
+                <a href="https://www.linkedin.com/in/mikerayvision" target="_blank" aria-label="LinkedIn"><i
+                        class="fab fa-linkedin-in"></i></a>
             </div>
         </div>
     </section>
@@ -884,10 +915,14 @@
         <p>&copy; 2025 Mike Ray Vision. All Rights Reserved.</p>
         <p class="footer-tagline">"Every story deserves to be told. Every vision deserves to be seen."</p>
         <div class="social-links" style="margin-top: 1rem;">
-            <a href="https://www.facebook.com/mike.ray.733" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com/A_Mike_Ray_Vision/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.youtube.com/@MikeRayVision" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-            <a href="https://www.linkedin.com/in/mikerayvision" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.facebook.com/mike.ray.733" target="_blank" aria-label="Facebook"><i
+                    class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/A_Mike_Ray_Vision/" target="_blank" aria-label="Instagram"><i
+                    class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@MikeRayVision" target="_blank" aria-label="YouTube"><i
+                    class="fab fa-youtube"></i></a>
+            <a href="https://www.linkedin.com/in/mikerayvision" target="_blank" aria-label="LinkedIn"><i
+                    class="fab fa-linkedin-in"></i></a>
         </div>
     </footer>
 
@@ -965,4 +1000,5 @@
         });
     </script>
 </body>
+
 </html>
