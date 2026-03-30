@@ -1575,11 +1575,18 @@
   ══════════════════════════════════════════ -->
   <script>
     // ── Loader ──
-    window.addEventListener('load', () => {
+    window.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
-        document.getElementById('loader').classList.add('hidden');
+        const loader = document.getElementById('loader');
+        if (loader) loader.classList.add('hidden');
       }, 1200);
     });
+    
+    // Fallback just in case
+    setTimeout(() => {
+      const loader = document.getElementById('loader');
+      if (loader && !loader.classList.contains('hidden')) loader.classList.add('hidden');
+    }, 3000);
 
     // ── Nav scroll ──
     const nav = document.getElementById('nav');
