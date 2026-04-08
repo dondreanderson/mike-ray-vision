@@ -33,10 +33,10 @@ A complete rebuild of **mikerayvision.com** inspired by the editorial luxury aes
 
 ---
 
-## Assets Used (From AI Drive & Supabase)
+## Assets Used (From AI Drive)
 | File | Usage |
 |------|-------|
-| FWC S3_EP9.MP4 | Hero video background (Supabase Media Bucket - same as MRV_Site3) |
+| FWC S3_EP9.MP4 | Hero video background |
 | IMG_4385 3.JPG | Hero poster + About primary portrait |
 | IMG_5373.jpg | Featured work tile 2 + About accent |
 | LumixSync (Director's Chair).jpg | Featured work tile 1 |

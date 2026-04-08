@@ -128,10 +128,9 @@
 
     .nav-logo {
       font-family: var(--font-serif);
-      font-size: 1.05rem;
+      font-size: 1.8rem;
       font-weight: 400;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
+      letter-spacing: 0.05em;
       color: var(--white);
     }
     .nav-logo span {
@@ -367,48 +366,66 @@
     /* ─────────────────────────────────────────────
        INTRO / NAME STATEMENT
     ───────────────────────────────────────────── */
-    #intro {
-      padding: 8vw var(--gutter);
-      max-width: var(--max-w);
-      margin: 0 auto;
+    /* ─────────────────────────────────────────────
+       ABOUT PREVIEW — LARGE CLICKABLE IMAGE
+    ───────────────────────────────────────────── */
+    #about-preview {
+      padding: 0;
+      margin: 0;
     }
-    .intro-statement {
-      font-family: var(--font-serif);
-      font-size: clamp(1.6rem, 3.5vw, 2.8rem);
-      font-weight: 300;
-      line-height: 1.4;
-      color: var(--white);
-      max-width: 900px;
+    .about-preview-link {
+      display: block;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
     }
-    .intro-statement em {
-      font-style: italic;
-      color: var(--gray-300);
+    .about-preview-img-wrap {
+      position: relative;
+      width: 100%;
+      height: 85vh;
+      min-height: 500px;
+      overflow: hidden;
     }
-    .intro-meta {
-      margin-top: 3rem;
-      display: flex;
-      gap: 4rem;
-      flex-wrap: wrap;
+    .about-preview-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      filter: grayscale(20%) brightness(0.7);
+      transition: transform 0.8s ease, filter 0.8s ease;
     }
-    .intro-stat {
-      display: flex;
-      flex-direction: column;
-      gap: 0.3rem;
+    .about-preview-link:hover .about-preview-img {
+      transform: scale(1.05);
+      filter: grayscale(0%) brightness(0.85);
     }
-    .intro-stat-num {
-      font-family: var(--font-serif);
-      font-size: 2.2rem;
-      font-weight: 300;
-      color: var(--white);
-      line-height: 1;
+    .about-preview-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
+      pointer-events: none;
     }
-    .intro-stat-label {
+    .about-preview-label {
+      position: absolute;
+      bottom: 8vw;
+      left: var(--gutter);
+      z-index: 2;
+    }
+    .preview-eyebrow {
       font-family: var(--font-sans);
       font-size: 0.58rem;
       font-weight: 400;
-      letter-spacing: 0.25em;
+      letter-spacing: 0.35em;
       text-transform: uppercase;
-      color: var(--gray-500);
+      color: var(--accent);
+      display: block;
+      margin-bottom: 1rem;
+    }
+    .preview-title {
+      font-family: var(--font-serif);
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: 300;
+      line-height: 0.95;
+      color: var(--white);
     }
 
     /* ─────────────────────────────────────────────
@@ -540,7 +557,7 @@
     .quote-bg {
       position: absolute;
       inset: 0;
-      background-image: url('assets/images/director.jpg');
+      background-image: url('https://www.genspark.ai/api/files/s/Aqy6jT8T');
       background-size: cover;
       background-position: top center;
       filter: brightness(0.25) grayscale(60%);
@@ -1110,7 +1127,7 @@
        NAV
   ══════════════════════════════════════════ -->
   <nav id="nav">
-    <a href="#hero" class="nav-logo">Mike Ray<span>.</span></a>
+    <a href="#hero" class="nav-logo">MIKE RAY</a>
     <ul class="nav-links">
       <li><a href="#work">Work</a></li>
       <li><a href="#about">About</a></li>
@@ -1137,8 +1154,8 @@
   ══════════════════════════════════════════ -->
   <section id="hero">
     <div class="hero-video-wrap">
-      <video autoplay muted loop playsinline poster="assets/images/mike-ray-headshot.jpg">
-        <source src="https://avllhhrljrqqlvlccmgd.supabase.co/storage/v1/object/public/media/hero-video.mp4" type="video/mp4" />
+      <video autoplay muted loop playsinline poster="https://www.genspark.ai/api/files/s/qI54TiSV">
+        <source src="https://www.genspark.ai/api/files/s/krRDyQWo" type="video/mp4" />
       </video>
     </div>
     <div class="hero-overlay"></div>
@@ -1153,33 +1170,21 @@
   </section>
 
   <!-- ══════════════════════════════════════════
-       INTRO STATEMENT
+       ABOUT PREVIEW — LARGE CLICKABLE IMAGE
   ══════════════════════════════════════════ -->
-  <section id="intro">
-    <div class="fade-up">
-      <p class="section-eyebrow">The Vision</p>
-      <p class="intro-statement">
-        An award-winning filmmaker who transforms <em>low-budget productions into big-budget stories</em> — from Fairbanks, Alaska to the world stage.
-      </p>
-    </div>
-    <div class="intro-meta fade-up delay-2">
-      <div class="intro-stat">
-        <span class="intro-stat-num">15+</span>
-        <span class="intro-stat-label">Years Voice Over</span>
+  <section id="about-preview">
+    <a href="#about" class="about-preview-link fade-up">
+      <div class="about-preview-img-wrap">
+        <img class="about-preview-img" 
+             src="https://www.genspark.ai/api/files/s/NmqaQmfS" 
+             alt="Mike Ray" />
+        <div class="about-preview-overlay"></div>
+        <div class="about-preview-label">
+          <span class="preview-eyebrow">Learn More</span>
+          <h2 class="preview-title">About<br />Mike Ray</h2>
+        </div>
       </div>
-      <div class="intro-stat">
-        <span class="intro-stat-num">2</span>
-        <span class="intro-stat-label">Festival Films</span>
-      </div>
-      <div class="intro-stat">
-        <span class="intro-stat-num">4+</span>
-        <span class="intro-stat-label">Projects in Development</span>
-      </div>
-      <div class="intro-stat">
-        <span class="intro-stat-num">1</span>
-        <span class="intro-stat-label">Award · Best Screenplay</span>
-      </div>
-    </div>
+    </a>
   </section>
 
   <!-- ══════════════════════════════════════════
@@ -1198,8 +1203,9 @@
       <!-- Main large tile -->
       <a href="https://mikerayvision.com/helen.html" target="_blank" class="work-tile work-tile-main fade-up">
         <img class="tile-img" 
-             src="assets/images/project-helen.jpg" 
-             alt="The Helen Lindsey Story" />
+             src="https://www.genspark.ai/api/files/s/1WV1ThV4" 
+             alt="The Helen Lindsey Story"
+             onerror="this.src='https://www.genspark.ai/api/files/s/qI54TiSV'" />
         <div class="tile-overlay"></div>
         <div class="tile-info">
           <p class="tile-category">Documentary · Festival Tour</p>
@@ -1211,8 +1217,9 @@
       <!-- Small tile 1 -->
       <a href="https://mikerayvision.com/productive-lie.html" target="_blank" class="work-tile work-tile-sm fade-up delay-1">
         <img class="tile-img" 
-             src="assets/images/project-productive.jpg" 
-             alt="The Productive Lie" />
+             src="https://www.genspark.ai/api/files/s/7kPDJV1A" 
+             alt="The Productive Lie"
+             onerror="this.src='https://www.genspark.ai/api/files/s/Aqy6jT8T'" />
         <div class="tile-overlay"></div>
         <div class="tile-info">
           <p class="tile-category">Episodic Feature · Festival Tour</p>
@@ -1224,8 +1231,9 @@
       <!-- Small tile 2 -->
       <a href="https://vimeo.com/amikerayvision" target="_blank" class="work-tile work-tile-sm fade-up delay-2">
         <img class="tile-img" 
-             src="assets/images/actor.jpg" 
-             alt="First Wives Club" />
+             src="https://www.genspark.ai/api/files/s/HGgvVobw" 
+             alt="First Wives Club"
+             onerror="this.src='https://www.genspark.ai/api/files/s/Aqy6jT8T'" />
         <div class="tile-overlay"></div>
         <div class="tile-info">
           <p class="tile-category">Series · Paramount+</p>
@@ -1255,11 +1263,13 @@
   <section id="about">
     <div class="about-images fade-up">
       <img class="about-img-primary" 
-           src="assets/images/mike-ray-headshot.jpg" 
-           alt="Mike Ray" />
+           src="https://www.genspark.ai/api/files/s/QzrrPrzv" 
+           alt="Mike Ray"
+           onerror="this.src='https://www.genspark.ai/api/files/s/Aqy6jT8T'" />
       <img class="about-img-accent" 
-           src="assets/images/project-productive.jpg" 
-           alt="Mike Ray behind the camera" />
+           src="https://www.genspark.ai/api/files/s/7kPDJV1A" 
+           alt="Mike Ray behind the camera"
+           onerror="this.src='https://www.genspark.ai/api/files/s/Aqy6jT8T'" />
     </div>
     <div class="about-content fade-up delay-2">
       <p class="section-eyebrow">About</p>
@@ -1278,8 +1288,9 @@
       </div>
       <div class="about-award">
         <img class="award-img" 
-             src="assets/images/award-badge.png" 
-             alt="Best Screenplay Award" />
+             src="https://www.genspark.ai/api/files/s/vdh115K8" 
+             alt="Best Screenplay Award"
+             onerror="this.src=''" />
         <p class="award-text">Winner, Best Screenplay<br />Urban Mediamakers Film Festival, 2020</p>
       </div>
     </div>
@@ -1302,8 +1313,9 @@
         <!-- Wide featured credit -->
         <a href="#" class="credit-tile wide fade-up">
           <img class="credit-img" 
-               src="assets/images/actor.jpg" 
-               alt="First Wives Club — Paramount+" />
+               src="https://www.genspark.ai/api/files/s/HGgvVobw" 
+               alt="First Wives Club — Paramount+"
+               onerror="this.src='https://www.genspark.ai/api/files/s/Aqy6jT8T'" />
           <div class="credit-overlay"></div>
           <div class="credit-info">
             <p class="credit-role">Actor · Guest Star</p>
@@ -1315,8 +1327,9 @@
         <!-- Standard credit tiles -->
         <a href="#" class="credit-tile fade-up delay-1">
           <img class="credit-img" 
-               src="assets/images/project-helen.jpg" 
-               alt="House of Payne" />
+               src="https://www.genspark.ai/api/files/s/1WV1ThV4" 
+               alt="House of Payne"
+               onerror="this.src='https://www.genspark.ai/api/files/s/qI54TiSV'" />
           <div class="credit-overlay"></div>
           <div class="credit-info">
             <p class="credit-role">Actor</p>
@@ -1327,8 +1340,9 @@
 
         <a href="https://mikerayvision.com/helen.html" target="_blank" class="credit-tile fade-up delay-2">
           <img class="credit-img" 
-               src="assets/images/project-productive.jpg" 
-               alt="The Helen Lindsey Story" />
+               src="https://www.genspark.ai/api/files/s/7kPDJV1A" 
+               alt="The Helen Lindsey Story"
+               onerror="this.src='https://www.genspark.ai/api/files/s/Aqy6jT8T'" />
           <div class="credit-overlay"></div>
           <div class="credit-info">
             <p class="credit-role">Writer · Director</p>
@@ -1339,8 +1353,9 @@
 
         <a href="https://mikerayvision.com/productive-lie.html" target="_blank" class="credit-tile fade-up delay-1">
           <img class="credit-img" 
-               src="assets/images/director.jpg" 
-               alt="The Productive Lie" />
+               src="https://www.genspark.ai/api/files/s/Aqy6jT8T" 
+               alt="The Productive Lie"
+               onerror="this.src='https://www.genspark.ai/api/files/s/Aqy6jT8T'" />
           <div class="credit-overlay"></div>
           <div class="credit-info">
             <p class="credit-role">Writer · Director · Actor</p>
@@ -1351,8 +1366,9 @@
 
         <a href="#" class="credit-tile fade-up delay-2">
           <img class="credit-img" 
-               src="assets/images/voice-over.jpg" 
-               alt="The Man in 3B — Audiobook" />
+               src="https://www.genspark.ai/api/files/s/SX26czTZ" 
+               alt="The Man in 3B — Audiobook"
+               onerror="this.src='https://www.genspark.ai/api/files/s/Aqy6jT8T'" />
           <div class="credit-overlay"></div>
           <div class="credit-info">
             <p class="credit-role">Narrator</p>
@@ -1363,8 +1379,9 @@
 
         <a href="#" class="credit-tile fade-up delay-1">
           <img class="credit-img" 
-               src="assets/images/voice-over.jpg" 
-               alt="PowerTalk Radio" />
+               src="https://www.genspark.ai/api/files/s/BNNKL7pw" 
+               alt="PowerTalk Radio"
+               onerror="this.src='https://www.genspark.ai/api/files/s/qI54TiSV'" />
           <div class="credit-overlay"></div>
           <div class="credit-info">
             <p class="credit-role">Radio Host</p>
@@ -1375,9 +1392,10 @@
 
         <a href="#" class="credit-tile fade-up delay-2">
           <img class="credit-img" 
-               src="assets/images/award-badge.png" 
+               src="https://www.genspark.ai/api/files/s/vdh115K8" 
                alt="Best Screenplay — Urban Mediamakers"
-               style="object-position: center; object-fit: contain; background:#111; filter: grayscale(20%) brightness(0.9);" />
+               style="object-position: center; object-fit: contain; background:#111; filter: grayscale(20%) brightness(0.9);"
+               onerror="this.src=''" />
           <div class="credit-overlay" style="background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 100%);"></div>
           <div class="credit-info">
             <p class="credit-role">Award · Best Screenplay</p>
@@ -1395,8 +1413,9 @@
   ══════════════════════════════════════════ -->
   <section id="director-break">
     <div class="director-bg">
-      <img src="assets/images/director.jpg" 
-           alt="Mike Ray — On Set" />
+      <img src="https://www.genspark.ai/api/files/s/Aqy6jT8T" 
+           alt="Mike Ray — On Set"
+           onerror="this.src=''" />
     </div>
     <div class="director-overlay"></div>
     <div class="director-text fade-up">
@@ -1422,8 +1441,9 @@
     </div>
     <div class="voice-image fade-up delay-2">
       <img class="voice-img" 
-           src="assets/images/voice-over.jpg" 
-           alt="Mike Ray — Voice Artist" />
+           src="https://www.genspark.ai/api/files/s/SX26czTZ" 
+           alt="Mike Ray — Voice Artist"
+           onerror="this.src='https://www.genspark.ai/api/files/s/Aqy6jT8T'" />
     </div>
   </section>
 
@@ -1560,18 +1580,11 @@
   ══════════════════════════════════════════ -->
   <script>
     // ── Loader ──
-    window.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('load', () => {
       setTimeout(() => {
-        const loader = document.getElementById('loader');
-        if (loader) loader.classList.add('hidden');
+        document.getElementById('loader').classList.add('hidden');
       }, 1200);
     });
-    
-    // Fallback just in case
-    setTimeout(() => {
-      const loader = document.getElementById('loader');
-      if (loader && !loader.classList.contains('hidden')) loader.classList.add('hidden');
-    }, 3000);
 
     // ── Nav scroll ──
     const nav = document.getElementById('nav');
