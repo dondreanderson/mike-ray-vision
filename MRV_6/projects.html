@@ -443,27 +443,17 @@
     .project-desc em { font-style: italic; color: var(--gray-100); }
 
     /* Individual project: In Development trio */
-    #section-development .project-img-wrap {
-      width: 70%;
-      margin: 0 auto;
-      border-radius: 8px; /* Optional slight rounding for floating look */
-    }
     #section-development .project-img-wrap img {
-      aspect-ratio: 16/7;
-      object-fit: cover;
-      object-position: center center;
+      width: 100%;
+      height: auto;
+      display: block;
     }
 
     /* Individual project: The Productive Lie */
-    #section-productive-lie .project-img-wrap {
-      width: 70%;
-      margin: 0 auto;
-      border-radius: 8px;
-    }
     #section-productive-lie .project-img-wrap img {
-      aspect-ratio: 16/7;
-      object-fit: cover;
-      object-position: center 30%;
+      width: 100%;
+      height: auto;
+      display: block;
     }
 
     /* ─────────────────────────────────────────────────────
@@ -549,8 +539,6 @@
       :root { --gutter: 5vw; }
       .nav-links { display: none; }
       .nav-toggle { display: flex; }
-      #section-development .project-img-wrap img,
-      #section-productive-lie .project-img-wrap img { aspect-ratio: 4/3; }
       #projects-cta { flex-direction: column; gap: 2rem; align-items: flex-start; }
       footer { flex-direction: column; gap: 1.5rem; align-items: flex-start; }
     }
