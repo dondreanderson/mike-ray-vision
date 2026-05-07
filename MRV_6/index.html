@@ -623,7 +623,7 @@
        large FILMOGRAPHY label at bottom right
     ───────────────────────────────────────────────────── */
     #filmography {
-      padding: 8vw 0;
+      padding: 4vw 0 6vw;
       background: var(--black);
       overflow: hidden;
     }
@@ -658,12 +658,14 @@
     /* Individual poster tile */
     .ptile {
       flex: 0 0 auto;
-      width: clamp(130px, 12vw, 200px);
+      width: clamp(110px, 10vw, 160px);
       position: relative;
       overflow: hidden;
       background: var(--charcoal);
       display: block;
       transition: transform 0.3s ease;
+      user-select: none;
+      -webkit-user-drag: none;
     }
     .ptile:hover { transform: scale(1.05); z-index: 3; }
 
@@ -675,6 +677,8 @@
       display: block;
       filter: brightness(0.88);
       transition: filter 0.4s ease;
+      user-select: none;
+      -webkit-user-drag: none;
     }
     .ptile:hover img { filter: brightness(1.08); }
 
@@ -767,8 +771,8 @@
     ───────────────────────────────────────────────────── */
     #director-break {
       position: relative;
-      height: 75vh;
-      min-height: 460px;
+      height: 45vh;
+      min-height: 320px;
       overflow: hidden;
     }
     .director-bg {
@@ -971,7 +975,7 @@
       #about { display: block; }
       #voice { grid-template-columns: 1fr; gap: 3rem; }
       #contact { grid-template-columns: 1fr; gap: 4rem; }
-      .ptile { width: clamp(120px, 14vw, 160px); }
+      .ptile { width: clamp(100px, 12vw, 140px); }
     }
 
     @media (max-width: 768px) {
@@ -981,7 +985,7 @@
       .form-row { grid-template-columns: 1fr; }
       footer { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
       .about-images { padding-bottom: 0; }
-      .ptile { width: 105px; }
+      .ptile { width: 90px; }
       .filmography-big-label { font-size: clamp(1.8rem, 8vw, 3.5rem); }
     }
   </style>
@@ -1399,9 +1403,15 @@
     // ── Poster row drag-to-scroll ───────────────────
     const wrap = document.getElementById('posterScrollWrap');
     if (wrap) {
-      let isDown = false, startX, scrollLeft;
+      // Prevent native browser dragging on elements inside the carousel
+      wrap.querySelectorAll('a, img').forEach(el => {
+        el.setAttribute('draggable', 'false');
+      });
+
+      let isDown = false, startX, scrollLeft, isDragging = false;
       wrap.addEventListener('mousedown', e => {
         isDown = true;
+        isDragging = false;
         wrap.classList.add('grabbing');
         startX     = e.pageX - wrap.offsetLeft;
         scrollLeft = wrap.scrollLeft;
@@ -1413,7 +1423,13 @@
         e.preventDefault();
         const x    = e.pageX - wrap.offsetLeft;
         const walk = (x - startX) * 1.6;
+        if (Math.abs(walk) > 5) isDragging = true;
         wrap.scrollLeft = scrollLeft - walk;
+      });
+      wrap.addEventListener('click', e => {
+        if (isDragging) {
+          e.preventDefault();
+        }
       });
     }
 
