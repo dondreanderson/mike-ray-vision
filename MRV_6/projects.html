@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — Mike Ray Vision</title>
+  <meta name="description" content="Featured projects from Mike Ray — filmmaker, writer, and creator. In development and festival-touring originals." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+
+  <style>
+    /* ─────────────────────────────────────────────────────
+       RESET & BASE
+    ───────────────────────────────────────────────────── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black:      #000000;
+      --near-black: #080808;
+      --dark:       #0d0d0d;
+      --charcoal:   #1a1a1a;
+      --gray-900:   #222222;
+      --gray-700:   #444444;
+      --gray-500:   #777777;
+      --gray-400:   #999999;
+      --gray-300:   #bbbbbb;
+      --gray-100:   #dddddd;
+      --white:      #ffffff;
+      --accent:     #c8a96e;
+
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans:  'Inter', system-ui, sans-serif;
+      --max-w:      1400px;
+      --gutter:     6vw;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a   { color: inherit; text-decoration: none; }
+
+    /* ─────────────────────────────────────────────────────
+       NAV
+    ───────────────────────────────────────────────────── */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.6rem var(--gutter);
+      transition: background 0.4s, padding 0.4s;
+    }
+    #nav.scrolled {
+      background: rgba(0,0,0,0.92);
+      padding: 1rem var(--gutter);
+      backdrop-filter: blur(8px);
+    }
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2.4rem;
+    }
+    .nav-links a {
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray-300);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--white); }
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--white);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--black);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile-link {
+      font-family: var(--font-serif);
+      font-size: 2.4rem;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      color: var(--white);
+    }
+
+    /* ─────────────────────────────────────────────────────
+       FADE-UP ANIMATION
+    ───────────────────────────────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 0.15s; }
+    .delay-2 { transition-delay: 0.30s; }
+    .delay-3 { transition-delay: 0.45s; }
+
+    /* ─────────────────────────────────────────────────────
+       SHARED TYPOGRAPHY
+    ───────────────────────────────────────────────────── */
+    .section-eyebrow {
+      font-family: var(--font-sans);
+      font-size: 0.62rem;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.8rem, 5vw, 5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      margin-bottom: 1.8rem;
+    }
+    .thin-rule {
+      width: 40px;
+      height: 1px;
+      background: var(--gray-700);
+      margin-bottom: 2rem;
+    }
+    .thin-rule.accent { background: var(--accent); }
+
+    /* ─────────────────────────────────────────────────────
+       PAGE HERO — "What's In The Works"
+    ───────────────────────────────────────────────────── */
+    #projects-hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 560px;
+      overflow: hidden;
+    }
+    .projects-hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+    }
+    .projects-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.20) 0%,
+        rgba(0,0,0,0.10) 35%,
+        rgba(0,0,0,0.65) 80%,
+        rgba(0,0,0,1.00) 100%
+      );
+    }
+    .projects-hero-text {
+      position: absolute;
+      bottom: 8vw;
+      left: var(--gutter);
+    }
+    .projects-hero-tagline {
+      margin-top: 1.2rem;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+    }
+
+    /* ─────────────────────────────────────────────────────
+       PROJECT SECTIONS — full layout
+    ───────────────────────────────────────────────────── */
+
+    /* Shared project section */
+    .project-section {
+      border-top: 1px solid var(--charcoal);
+    }
+
+    /* Full-bleed project image */
+    .project-img-wrap {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+    .project-img-wrap img {
+      width: 100%;
+      display: block;
+      transition: transform 1.2s ease;
+    }
+    .project-img-wrap:hover img { transform: scale(1.02); }
+    .project-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        transparent 50%,
+        rgba(0,0,0,0.80) 100%
+      );
+    }
+
+    /* ── Split clickable zones ── */
+    .project-img-split { cursor: default; }
+    .project-img-split:hover img { transform: none; } /* disable global hover zoom */
+    .split-zone {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 50%;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      background: rgba(0,0,0,0.52);  /* dark overlay visible by default */
+      transition: background 0.35s ease;
+    }
+    .split-zone-left  { left: 0; }
+    .split-zone-right { right: 0; }
+    .split-zone:hover {
+      background: rgba(0,0,0,0.0);   /* clears on hover — image shows through */
+    }
+    .split-hover-label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      opacity: 1;                    /* visible by default */
+      transform: translateY(0);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      color: var(--white);
+      text-align: center;
+    }
+    .split-zone:hover .split-hover-label {
+      opacity: 0;                    /* fades out on hover */
+      transform: translateY(6px);
+    }
+    .split-play {
+      font-size: 2rem;
+      width: 56px;
+      height: 56px;
+      border: 2px solid var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-left: 4px; /* optical centre for play icon */
+    }
+    .split-hover-label span {
+      font-family: var(--font-sans);
+      font-size: 0.62rem;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    /* ── Trailer Modal ── */
+    #trailer-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+    }
+    #trailer-modal.open { display: flex; }
+    #trailer-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      cursor: pointer;
+    }
+    #trailer-modal-inner {
+      position: relative;
+      z-index: 2;
+      width: 90vw;
+      max-width: 1100px;
+    }
+    #trailer-close {
+      position: absolute;
+      top: -2.4rem;
+      right: 0;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 2rem;
+      line-height: 1;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+      font-family: var(--font-sans);
+    }
+    #trailer-close:hover { opacity: 1; }
+    #trailer-iframe-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--black);
+    }
+    #trailer-iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Project content block */
+    .project-content {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 6vw var(--gutter) 8vw;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 6vw;
+      align-items: start;
+    }
+    .project-meta { }
+    .project-meta-label {
+      font-family: var(--font-sans);
+      font-size: 0.58rem;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gray-700);
+      margin-bottom: 0.5rem;
+    }
+    .project-meta-value {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: var(--gray-300);
+      margin-bottom: 1.4rem;
+      line-height: 1.6;
+    }
+    .project-meta-value strong {
+      font-weight: 500;
+      color: var(--white);
+    }
+    .project-divider {
+      width: 28px;
+      height: 1px;
+      background: var(--charcoal);
+      margin: 1.6rem 0;
+    }
+    .project-cta {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-family: var(--font-sans);
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--white);
+      border: 1px solid var(--gray-700);
+      padding: 0.8rem 1.6rem;
+      transition: border-color 0.3s;
+    }
+    .project-cta:hover { border-color: var(--white); }
+
+    .project-body { }
+    .project-title {
+      font-family: var(--font-serif);
+      font-size: clamp(3rem, 5.5vw, 5.5rem);
+      font-weight: 300;
+      line-height: 0.95;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      margin-bottom: 2rem;
+    }
+    .project-title em {
+      font-style: italic;
+      color: var(--gray-300);
+    }
+    .project-tagline {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+      font-weight: 300;
+      color: var(--gray-400);
+      margin-bottom: 2rem;
+      letter-spacing: 0.02em;
+    }
+    .project-desc {
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      font-weight: 300;
+      line-height: 1.95;
+      color: var(--gray-300);
+      margin-bottom: 1.5rem;
+    }
+    .project-desc:last-of-type { margin-bottom: 0; }
+    .project-desc strong { font-weight: 500; color: var(--white); }
+    .project-desc em { font-style: italic; color: var(--gray-100); }
+
+    /* Individual project: In Development trio */
+    #section-development .project-img-wrap img {
+      aspect-ratio: 16/7;
+      object-fit: cover;
+      object-position: center center;
+    }
+
+    /* Individual project: The Productive Lie */
+    #section-productive-lie .project-img-wrap img {
+      aspect-ratio: 16/7;
+      object-fit: cover;
+      object-position: center 30%;
+    }
+
+    /* ─────────────────────────────────────────────────────
+       BACK / CTA BAR
+    ───────────────────────────────────────────────────── */
+    #projects-cta {
+      padding: 5vw var(--gutter);
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--charcoal);
+    }
+    .cta-back {
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      transition: color 0.2s;
+    }
+    .cta-back:hover { color: var(--white); }
+    .cta-back i { font-size: 0.6rem; }
+    .cta-credits {
+      display: inline-block;
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--white);
+      border: 1px solid var(--gray-700);
+      padding: 0.9rem 2rem;
+      transition: border-color 0.3s;
+    }
+    .cta-credits:hover { border-color: var(--white); }
+
+    /* ─────────────────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────────────────── */
+    footer {
+      padding: 2.5rem var(--gutter);
+      border-top: 1px solid var(--charcoal);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--black);
+    }
+    .footer-brand {
+      font-family: var(--font-serif);
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-500);
+    }
+    .footer-copy {
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      color: var(--gray-700);
+    }
+    .footer-social {
+      display: flex;
+      gap: 1.4rem;
+    }
+    .footer-social a {
+      font-size: 0.75rem;
+      color: var(--gray-700);
+      transition: color 0.2s;
+    }
+    .footer-social a:hover { color: var(--white); }
+
+    /* ─────────────────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .project-content { grid-template-columns: 1fr; gap: 3rem; }
+    }
+    @media (max-width: 768px) {
+      :root { --gutter: 5vw; }
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      #section-development .project-img-wrap img,
+      #section-productive-lie .project-img-wrap img { aspect-ratio: 4/3; }
+      #projects-cta { flex-direction: column; gap: 2rem; align-items: flex-start; }
+      footer { flex-direction: column; gap: 1.5rem; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════
+       NAV
+  ══════════════════════════════════════════════ -->
+  <nav id="nav">
+    <a href="index.html" class="nav-logo">Mike Ray</a>
+    <ul class="nav-links">
+      <li><a href="projects.html" class="active">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="index.html#filmography">Credits</a></li>
+      <li><a href="index.html#voice">Voice</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile nav overlay -->
+  <div class="nav-mobile" id="navMobile">
+    <a href="projects.html"          class="nav-mobile-link">Work</a>
+    <a href="about.html"             class="nav-mobile-link">About</a>
+    <a href="index.html#filmography" class="nav-mobile-link">Credits</a>
+    <a href="index.html#voice"       class="nav-mobile-link">Voice</a>
+    <a href="index.html#contact"     class="nav-mobile-link">Contact</a>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       HERO — "What's In The Works"
+  ══════════════════════════════════════════════ -->
+  <section id="projects-hero">
+    <img class="projects-hero-img"
+         src="images/whats-in-the-works.jpg"
+         alt="What's In The Works — Mike Ray" />
+    <div class="projects-hero-overlay"></div>
+    <div class="projects-hero-text fade-up">
+      <p class="section-eyebrow">Featured Projects</p>
+      <h1 class="section-title" style="font-size: clamp(3rem, 8vw, 7rem); margin-bottom: 0;">What's In<br />The Works</h1>
+      <p class="projects-hero-tagline">Stories on the page. Projects on the rise.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 1 — IN DEVELOPMENT (Heirs / In The Zone / Letters to My Father)
+  ══════════════════════════════════════════════ -->
+  <section class="project-section" id="section-development">
+
+    <div class="project-img-wrap fade-up">
+      <img src="images/mike-ray-vision-projects.jpg"
+           alt="Mike Ray Vision — Heirs, In The Zone, Letters to My Father" />
+      <div class="project-img-overlay"></div>
+    </div>
+
+    <div class="project-content">
+
+      <!-- Left: meta -->
+      <div class="project-meta fade-up">
+        <p class="project-meta-label">Status</p>
+        <p class="project-meta-value"><strong>In Development</strong></p>
+
+        <p class="project-meta-label">Format</p>
+        <p class="project-meta-value">
+          Feature Film<br />
+          Sitcom Series<br />
+          Drama Series
+        </p>
+
+        <p class="project-meta-label">Role</p>
+        <p class="project-meta-value">
+          Creator · Writer<br />
+          Director · Producer
+        </p>
+
+        <div class="project-divider"></div>
+
+        <p class="project-meta-label">Production</p>
+        <p class="project-meta-value"><strong>A Mike Ray Vision</strong></p>
+      </div>
+
+      <!-- Right: description -->
+      <div class="project-body fade-up delay-1">
+        <p class="section-eyebrow">In Development</p>
+        <h2 class="project-title">Original<br /><em>Projects</em></h2>
+        <div class="thin-rule"></div>
+
+        <p class="project-tagline">Three stories. Three worlds. One vision.</p>
+
+        <p class="project-desc">
+          <strong>Heirs</strong> — A sweeping drama rooted in legacy, land, and power. Set against a Southern backdrop steeped in history, <em>Heirs</em> follows a family whose bloodline carries the weight of generations — and the secrets that threaten to unravel it all. History didn't hand them power. They took it.
+        </p>
+
+        <p class="project-desc">
+          <strong>In The Zone</strong> — An original sitcom set inside a barbershop, where the chairs are always full and the conversations cut deeper than the clippers. Created by Michael Ray, <em>In The Zone</em> is a love letter to community, culture, and the people who hold it together — one story at a time.
+        </p>
+
+        <p class="project-desc">
+          <strong>Letters to My Father</strong> — A son's love. A soldier's duty. A father's legacy. Written from a deeply personal place, this drama traces the bond between a son and his father — an Army sergeant who passed away from ALS at 46 — through letters that were never sent, and a story that demanded to be told. Based on a true story.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 2 — THE PRODUCTIVE LIE
+  ══════════════════════════════════════════════ -->
+  <section class="project-section" id="section-productive-lie">
+
+    <div class="project-img-wrap project-img-split fade-up">
+      <img src="images/mike-ray-festival-films.jpg"
+           alt="The Helen Lindsey Story &amp; The Productive Lie — Mike Ray" />
+      <!-- Left 50% — The Helen Lindsey Story -->
+      <button onclick="openTrailer('https://player.vimeo.com/video/76979871?autoplay=1&title=0&byline=0&portrait=0')"
+         class="split-zone split-zone-left"
+         aria-label="Watch The Helen Lindsey Story trailer">
+        <div class="split-hover-label">
+          <i class="fas fa-play split-play"></i>
+          <span>Watch Trailer</span>
+        </div>
+      </button>
+      <!-- Right 50% — The Productive Lie -->
+      <button onclick="openTrailer('https://player.vimeo.com/video/1186705099?autoplay=1&title=0&byline=0&portrait=0')"
+         class="split-zone split-zone-right"
+         aria-label="Watch The Productive Lie trailer">
+        <div class="split-hover-label">
+          <i class="fas fa-play split-play"></i>
+          <span>Watch Trailer</span>
+        </div>
+      </button>
+    </div>
+
+    <div class="project-content">
+
+      <!-- Left: meta -->
+      <div class="project-meta fade-up">
+        <p class="project-meta-label">Year</p>
+        <p class="project-meta-value"><strong>2014</strong></p>
+
+        <p class="project-meta-label">Format</p>
+        <p class="project-meta-value">Episodic Feature<br />Festival Tour</p>
+
+        <p class="project-meta-label">Role</p>
+        <p class="project-meta-value">
+          Writer · Director<br />
+          Actor · Producer
+        </p>
+
+        <div class="project-divider"></div>
+
+        <p class="project-meta-label">Status</p>
+        <p class="project-meta-value"><strong>Festival Circuit</strong></p>
+
+        <a href="https://mikerayvision.com/productive-lie.html"
+           target="_blank" rel="noopener"
+           class="project-cta">Learn More ↗</a>
+      </div>
+
+      <!-- Right: description -->
+      <div class="project-body fade-up delay-1">
+        <p class="section-eyebrow">Festival Work</p>
+        <h2 class="project-title">The Productive<br /><em>Lie</em></h2>
+        <div class="thin-rule"></div>
+
+        <p class="project-tagline">The truth was always there. They just kept themselves too busy to see it.</p>
+
+        <p class="project-desc">
+          <strong>The Productive Lie</strong> is an episodic feature written, directed, and starring Mike Ray — a story about the stories we tell ourselves to avoid the ones that matter most. Shot on an independent budget with a cinematic eye and an unflinching script, it stands as proof that the size of your resources has nothing to do with the size of your vision.
+        </p>
+
+        <p class="project-desc">
+          The film has toured the festival circuit and earned recognition for its authentic performances and tightly crafted narrative. It remains one of Mike Ray's most personal works — a film that asks hard questions and doesn't flinch from the answers.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       BACK / CTA
+  ══════════════════════════════════════════════ -->
+  <div id="projects-cta" class="fade-up">
+    <a href="index.html" class="cta-back">
+      <i class="fas fa-arrow-left"></i>
+      Back to Home
+    </a>
+    <a href="index.html#filmography" class="cta-credits">View Full Filmography</a>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════ -->
+  <footer>
+    <span class="footer-brand">A Mike Ray Vision</span>
+    <div class="footer-social">
+      <a href="https://www.facebook.com/mike.ray.733" target="_blank" rel="noopener" aria-label="Facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="https://www.instagram.com/A_Mike_Ray_Vision/" target="_blank" rel="noopener" aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://www.youtube.com/@MikeRayVision" target="_blank" rel="noopener" aria-label="YouTube">
+        <i class="fab fa-youtube"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/mikerayvision" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </div>
+    <span class="footer-copy">© 2025 Mike Ray. All rights reserved.</span>
+  </footer>
+
+  <!-- ══════════════════════════════════════════════
+       TRAILER MODAL
+  ══════════════════════════════════════════════ -->
+  <div id="trailer-modal" role="dialog" aria-modal="true" aria-label="Trailer player">
+    <div id="trailer-modal-backdrop"></div>
+    <div id="trailer-modal-inner">
+      <button id="trailer-close" aria-label="Close trailer">&times;</button>
+      <div id="trailer-iframe-wrap">
+        <iframe id="trailer-iframe"
+          src=""
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen
+          title="Trailer">
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       JAVASCRIPT
+  ══════════════════════════════════════════════ -->
+  <script>
+    // ── Trailer Modal ────────────────────────────
+    const modal     = document.getElementById('trailer-modal');
+    const iframe    = document.getElementById('trailer-iframe');
+    const backdrop  = document.getElementById('trailer-modal-backdrop');
+    const closeBtn  = document.getElementById('trailer-close');
+
+    function openTrailer(embedUrl) {
+      iframe.src = embedUrl;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeTrailer() {
+      modal.classList.remove('open');
+      iframe.src = ''; // stop video playback
+      document.body.style.overflow = '';
+    }
+    backdrop.addEventListener('click', closeTrailer);
+    closeBtn.addEventListener('click', closeTrailer);
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeTrailer();
+    });
+
+    // ── Nav scroll ───────────────────────────────
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // ── Hamburger ────────────────────────────────
+    const toggle    = document.getElementById('navToggle');
+    const mobileNav = document.getElementById('navMobile');
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('open');
+      mobileNav.classList.toggle('open');
+      document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+    });
+    document.querySelectorAll('.nav-mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        toggle.classList.remove('open');
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // ── Fade-up on scroll ────────────────────────
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

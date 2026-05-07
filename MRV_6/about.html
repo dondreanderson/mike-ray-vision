@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Mike Ray — Director · Actor · Writer · Voice Artist</title>
+  <meta name="description" content="About Mike Ray — actor, filmmaker, writer, producer, and voice artist based in Atlanta. Born in Fairbanks, Alaska. Award-winning storyteller." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+
+  <style>
+    /* ─────────────────────────────────────────────────────
+       RESET & BASE
+    ───────────────────────────────────────────────────── */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --black:      #000000;
+      --near-black: #080808;
+      --dark:       #0d0d0d;
+      --dark-mid:   #111111;
+      --charcoal:   #1a1a1a;
+      --gray-900:   #222222;
+      --gray-700:   #444444;
+      --gray-500:   #777777;
+      --gray-400:   #999999;
+      --gray-300:   #bbbbbb;
+      --gray-100:   #dddddd;
+      --white:      #ffffff;
+      --off-white:  #f5f4f0;
+      --accent:     #c8a96e;
+
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans:  'Inter', system-ui, sans-serif;
+
+      --max-w:  1400px;
+      --gutter: 6vw;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; }
+    a   { color: inherit; text-decoration: none; }
+
+    /* ─────────────────────────────────────────────────────
+       NAV
+    ───────────────────────────────────────────────────── */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.6rem var(--gutter);
+      transition: background 0.4s, padding 0.4s;
+    }
+    #nav.scrolled {
+      background: rgba(0,0,0,0.92);
+      padding: 1rem var(--gutter);
+      backdrop-filter: blur(8px);
+    }
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2.4rem;
+    }
+    .nav-links a {
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray-300);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--white); }
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--white);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    /* Mobile nav overlay */
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--black);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile-link {
+      font-family: var(--font-serif);
+      font-size: 2.4rem;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      color: var(--white);
+    }
+
+    /* ─────────────────────────────────────────────────────
+       FADE-UP ANIMATION
+    ───────────────────────────────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 0.15s; }
+    .delay-2 { transition-delay: 0.30s; }
+    .delay-3 { transition-delay: 0.45s; }
+
+    /* ─────────────────────────────────────────────────────
+       SHARED TYPOGRAPHY UTILITIES
+    ───────────────────────────────────────────────────── */
+    .section-eyebrow {
+      font-family: var(--font-sans);
+      font-size: 0.62rem;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.8rem, 5vw, 5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      margin-bottom: 1.8rem;
+    }
+    .thin-rule {
+      width: 40px;
+      height: 1px;
+      background: var(--gray-700);
+      margin-bottom: 2rem;
+    }
+    .thin-rule.accent { background: var(--accent); }
+
+    /* ─────────────────────────────────────────────────────
+       HERO — full-bleed portrait
+    ───────────────────────────────────────────────────── */
+    #about-hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 560px;
+      overflow: hidden;
+      background: var(--black);
+    }
+    .about-hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: grayscale(12%);
+    }
+    .about-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.25) 0%,
+        rgba(0,0,0,0.10) 40%,
+        rgba(0,0,0,0.65) 85%,
+        rgba(0,0,0,1.00) 100%
+      );
+    }
+    .about-hero-text {
+      position: absolute;
+      bottom: 7vw;
+      left: var(--gutter);
+      right: var(--gutter);
+    }
+    .about-hero-text .section-eyebrow { color: var(--gray-400); }
+    .about-hero-name {
+      font-family: var(--font-serif);
+      font-size: clamp(4rem, 10vw, 9rem);
+      font-weight: 300;
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      color: var(--white);
+    }
+    .about-hero-tagline {
+      margin-top: 1.4rem;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+    }
+
+    /* ─────────────────────────────────────────────────────
+       ABOUT CONTENT
+    ───────────────────────────────────────────────────── */
+    #about-body {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 8vw var(--gutter) 10vw;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 7vw;
+      align-items: start;
+    }
+
+    /* Left column — sticky label sidebar */
+    .about-sidebar {
+      position: sticky;
+      top: 7rem;
+    }
+    .sidebar-name {
+      font-family: var(--font-serif);
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .sidebar-roles {
+      font-family: var(--font-sans);
+      font-size: 0.62rem;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      line-height: 2;
+    }
+    .sidebar-divider {
+      width: 32px;
+      height: 1px;
+      background: var(--charcoal);
+      margin: 1.8rem 0;
+    }
+    .sidebar-credit {
+      font-family: var(--font-sans);
+      font-size: 0.62rem;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--gray-700);
+      line-height: 1.8;
+    }
+    .sidebar-credit a {
+      color: var(--gray-500);
+      border-bottom: 1px solid var(--charcoal);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .sidebar-credit a:hover {
+      color: var(--white);
+      border-color: var(--gray-500);
+    }
+    .sidebar-award {
+      margin-top: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .sidebar-award-img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      filter: grayscale(20%);
+    }
+    .sidebar-award-text {
+      font-family: var(--font-sans);
+      font-size: 0.58rem;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      color: var(--gray-500);
+      line-height: 1.6;
+    }
+
+    /* Right column — bio */
+    .about-bio-col {}
+    .about-bio-col p {
+      font-family: var(--font-sans);
+      font-size: 0.92rem;
+      font-weight: 300;
+      line-height: 1.95;
+      color: var(--gray-300);
+      margin-bottom: 1.6rem;
+    }
+    .about-bio-col p:last-child { margin-bottom: 0; }
+    .about-bio-col strong {
+      font-weight: 500;
+      color: var(--white);
+    }
+    .about-bio-col em {
+      font-style: italic;
+      color: var(--gray-100);
+    }
+    .about-bio-col .bio-pull {
+      font-family: var(--font-serif);
+      font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.45;
+      color: var(--white);
+      border-left: 2px solid var(--accent);
+      padding-left: 1.6rem;
+      margin: 2.8rem 0;
+    }
+
+    /* ─────────────────────────────────────────────────────
+       CREDITS STRIP
+    ───────────────────────────────────────────────────── */
+    #credits-strip {
+      border-top: 1px solid var(--charcoal);
+      background: var(--near-black);
+      padding: 7vw var(--gutter);
+    }
+    .credits-strip-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+    .credits-strip-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3.5rem;
+    }
+    .credits-strip-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 300;
+      color: var(--white);
+    }
+    .credits-strip-link {
+      font-family: var(--font-sans);
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      border-bottom: 1px solid var(--charcoal);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .credits-strip-link:hover { color: var(--white); border-color: var(--gray-500); }
+    .credits-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+    .credit-item {
+      padding: 1.8rem 1.5rem;
+      border-left: 1px solid var(--charcoal);
+      transition: border-color 0.3s;
+    }
+    .credit-item:hover { border-color: var(--gray-500); }
+    .credit-show {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+    .credit-role {
+      font-family: var(--font-sans);
+      font-size: 0.62rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: var(--gray-500);
+      margin-bottom: 0.2rem;
+    }
+    .credit-network {
+      font-family: var(--font-sans);
+      font-size: 0.58rem;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--gray-700);
+    }
+
+    /* ─────────────────────────────────────────────────────
+       BACK / CTA
+    ───────────────────────────────────────────────────── */
+    #about-cta {
+      padding: 6vw var(--gutter);
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--charcoal);
+    }
+    .cta-back {
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gray-500);
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      transition: color 0.2s;
+    }
+    .cta-back:hover { color: var(--white); }
+    .cta-back i { font-size: 0.6rem; }
+    .cta-contact {
+      display: inline-block;
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--white);
+      border: 1px solid var(--gray-700);
+      padding: 0.9rem 2rem;
+      transition: border-color 0.3s, color 0.3s;
+    }
+    .cta-contact:hover { border-color: var(--white); }
+
+    /* ─────────────────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────────────────── */
+    footer {
+      padding: 2.5rem var(--gutter);
+      border-top: 1px solid var(--charcoal);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--black);
+    }
+    .footer-brand {
+      font-family: var(--font-serif);
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-500);
+    }
+    .footer-copy {
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      color: var(--gray-700);
+    }
+    .footer-social {
+      display: flex;
+      gap: 1.4rem;
+    }
+    .footer-social a {
+      font-size: 0.75rem;
+      color: var(--gray-700);
+      transition: color 0.2s;
+    }
+    .footer-social a:hover { color: var(--white); }
+
+    /* ─────────────────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      #about-body {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+      }
+      .about-sidebar { position: static; }
+      .credits-list { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      :root { --gutter: 5vw; }
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .about-hero-name { font-size: clamp(3rem, 14vw, 6rem); }
+      .credits-list { grid-template-columns: 1fr; }
+      #about-cta { flex-direction: column; gap: 2rem; align-items: flex-start; }
+      footer { flex-direction: column; gap: 1.5rem; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════
+       NAV
+  ══════════════════════════════════════════════ -->
+  <nav id="nav">
+    <a href="index.html" class="nav-logo">Mike Ray</a>
+    <ul class="nav-links">
+      <li><a href="projects.html">Work</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="index.html#filmography">Credits</a></li>
+      <li><a href="index.html#voice">Voice</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile nav overlay -->
+  <div class="nav-mobile" id="navMobile">
+    <a href="projects.html"        class="nav-mobile-link">Work</a>
+    <a href="about.html"             class="nav-mobile-link">About</a>
+    <a href="index.html#filmography" class="nav-mobile-link">Credits</a>
+    <a href="index.html#voice"       class="nav-mobile-link">Voice</a>
+    <a href="index.html#contact"     class="nav-mobile-link">Contact</a>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       HERO — full-bleed portrait
+  ══════════════════════════════════════════════ -->
+  <section id="about-hero">
+    <img class="about-hero-img"
+         src="images/mike-ray-blue-coat.jpg"
+         alt="Mike Ray" />
+    <div class="about-hero-overlay"></div>
+    <div class="about-hero-text fade-up">
+      <p class="section-eyebrow">About</p>
+      <h1 class="about-hero-name">Mike<br />Ray</h1>
+      <p class="about-hero-tagline">Actor &nbsp;·&nbsp; Director &nbsp;·&nbsp; Writer &nbsp;·&nbsp; Producer &nbsp;·&nbsp; Voice Artist</p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       BIO — two-column editorial layout
+  ══════════════════════════════════════════════ -->
+  <section id="about-body">
+
+    <!-- Left: sticky sidebar -->
+    <aside class="about-sidebar fade-up">
+      <p class="section-eyebrow">Biography</p>
+      <h2 class="sidebar-name">Mike Ray</h2>
+      <p class="sidebar-roles">
+        Actor<br />
+        Director<br />
+        Writer<br />
+        Producer<br />
+        Voice Artist<br />
+        Entrepreneur
+      </p>
+      <div class="sidebar-divider"></div>
+      <p class="sidebar-credit">
+        Based in Atlanta, GA<br /><br />
+        IMDb &nbsp;<a href="https://www.imdb.com/name/nm1839026/" target="_blank" rel="noopener">nm1839026</a><br />
+        Vimeo &nbsp;<a href="https://vimeo.com/149064587" target="_blank" rel="noopener">Watch Reel</a>
+      </p>
+      <div class="sidebar-award">
+        <img class="sidebar-award-img"
+             src="images/best-screenplay-award.png"
+             alt="Best Screenplay Award" />
+        <p class="sidebar-award-text">
+          Winner, Best Screenplay<br />
+          Urban Mediamakers<br />
+          Film Festival, 2020
+        </p>
+      </div>
+    </aside>
+
+    <!-- Right: bio text -->
+    <div class="about-bio-col fade-up delay-1">
+      <p>
+        Mike Ray is an <strong>actor, filmmaker, writer, and producer</strong> based in Atlanta, with a body of work that spans performance, voice-over, and the development of original film and television projects. A seasoned creative with a grounded approach to the work, he has continued to build his career through experience, perseverance, and a clear commitment to meaningful storytelling.
+      </p>
+
+      <p class="bio-pull">
+        "Every story deserves to be told the right way — and I won't stop until it is."
+      </p>
+
+      <p>
+        Born in Fairbanks, Alaska and raised in a military family, Mike lived throughout the United States and Germany before making Atlanta his professional base. His father, an Army sergeant who passed away from ALS at 46, remains a profound influence on his life and work, and serves as the emotional backdrop for <em>Letters to My Father</em>, a screenplay written from a deeply personal place.
+      </p>
+
+      <p>
+        Mike's original projects also include <em>Heirs</em> and <em>In The Zone</em> — a sitcom set inside a barbershop — both of which reflect his interest in character-driven stories rooted in community and culture. His festival-touring work, including the documentary <em>The Helen Lindsey Story</em> and the episodic feature <em>The Productive Lie</em>, demonstrates his ability to produce <strong>compelling, cinematic work on independent budgets</strong>.
+      </p>
+
+      <p>
+        On screen, Mike has appeared in <em>House of Payne</em>, <em>Zatima</em>, <em>First Wives Club</em>, <em>Dynasty</em>, <em>The Falcon and the Winter Soldier</em>, <em>Saints &amp; Sinners</em>, <em>Greenleaf</em>, and more. As a <strong>voice artist with over 15 years of experience</strong>, he has narrated Carl Weber's bestselling audiobook <em>The Man in 3B</em> and continues to work across commercial, corporate, and character voiceover.
+      </p>
+
+      <p>
+        Away from the camera, Mike is a comedian, a former radio host, and the creator of the board game <em>Journey to the Motherland</em>. He brings the same energy to every room — whether on set, in the booth, or on stage.
+      </p>
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       SELECTED CREDITS STRIP
+  ══════════════════════════════════════════════ -->
+  <section id="credits-strip">
+    <div class="credits-strip-inner">
+
+      <div class="credits-strip-header fade-up">
+        <h2 class="credits-strip-title">Selected Credits</h2>
+        <a href="https://www.imdb.com/name/nm1839026/" target="_blank" rel="noopener"
+           class="credits-strip-link">Full Credits on IMDb ↗</a>
+      </div>
+
+      <div class="credits-list">
+
+        <div class="credit-item fade-up delay-1">
+          <p class="credit-show">House of Payne</p>
+          <p class="credit-role">Q Anthony / Tony</p>
+          <p class="credit-network">BET · 2008–2025</p>
+        </div>
+
+        <div class="credit-item fade-up delay-2">
+          <p class="credit-show">Zatima</p>
+          <p class="credit-role">Dr. Chantis</p>
+          <p class="credit-network">BET+ · 2022–2025</p>
+        </div>
+
+        <div class="credit-item fade-up delay-3">
+          <p class="credit-show">First Wives Club</p>
+          <p class="credit-role">Warren</p>
+          <p class="credit-network">Paramount+ / BET+ · 2021–2022</p>
+        </div>
+
+        <div class="credit-item fade-up delay-1">
+          <p class="credit-show">Dynasty</p>
+          <p class="credit-role">Donald</p>
+          <p class="credit-network">CW · 2022</p>
+        </div>
+
+        <div class="credit-item fade-up delay-2">
+          <p class="credit-show">The Falcon and the Winter Soldier</p>
+          <p class="credit-role">Alonso Barber</p>
+          <p class="credit-network">Disney+ · 2021</p>
+        </div>
+
+        <div class="credit-item fade-up delay-3">
+          <p class="credit-show">Saints &amp; Sinners</p>
+          <p class="credit-role">Attorney</p>
+          <p class="credit-network">Bounce TV · 2018</p>
+        </div>
+
+        <div class="credit-item fade-up delay-1">
+          <p class="credit-show">Greenleaf</p>
+          <p class="credit-role">Marks</p>
+          <p class="credit-network">OWN · 2017</p>
+        </div>
+
+        <div class="credit-item fade-up delay-2">
+          <p class="credit-show">Army Wives</p>
+          <p class="credit-role">SGT Boggs</p>
+          <p class="credit-network">Lifetime · 2012–2013</p>
+        </div>
+
+        <div class="credit-item fade-up delay-3">
+          <p class="credit-show">The Helen Lindsey Story</p>
+          <p class="credit-role">Writer · Director</p>
+          <p class="credit-network">Documentary · 2024</p>
+        </div>
+
+        <div class="credit-item fade-up delay-1">
+          <p class="credit-show">The Productive Lie</p>
+          <p class="credit-role">Writer · Director · Actor</p>
+          <p class="credit-network">Episodic Feature · 2014</p>
+        </div>
+
+        <div class="credit-item fade-up delay-2">
+          <p class="credit-show">The Man in 3B</p>
+          <p class="credit-role">Narrator</p>
+          <p class="credit-network">Carl Weber Audiobook</p>
+        </div>
+
+        <div class="credit-item fade-up delay-3">
+          <p class="credit-show">In The Zone</p>
+          <p class="credit-role">Creator · Writer</p>
+          <p class="credit-network">Sitcom · In Development</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       BACK / CONTACT CTA
+  ══════════════════════════════════════════════ -->
+  <div id="about-cta" class="fade-up">
+    <a href="index.html" class="cta-back">
+      <i class="fas fa-arrow-left"></i>
+      Back to Home
+    </a>
+    <a href="index.html#contact" class="cta-contact">Get In Touch</a>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════ -->
+  <footer>
+    <span class="footer-brand">A Mike Ray Vision</span>
+    <div class="footer-social">
+      <a href="https://www.facebook.com/mike.ray.733" target="_blank" rel="noopener" aria-label="Facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="https://www.instagram.com/A_Mike_Ray_Vision/" target="_blank" rel="noopener" aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://www.youtube.com/@MikeRayVision" target="_blank" rel="noopener" aria-label="YouTube">
+        <i class="fab fa-youtube"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/mikerayvision" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </div>
+    <span class="footer-copy">© 2025 Mike Ray. All rights reserved.</span>
+  </footer>
+
+  <!-- ══════════════════════════════════════════════
+       JAVASCRIPT
+  ══════════════════════════════════════════════ -->
+  <script>
+    // ── Nav scroll effect ────────────────────────
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // ── Hamburger toggle ─────────────────────────
+    const toggle    = document.getElementById('navToggle');
+    const mobileNav = document.getElementById('navMobile');
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('open');
+      mobileNav.classList.toggle('open');
+      document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+    });
+    document.querySelectorAll('.nav-mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        toggle.classList.remove('open');
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // ── Fade-up on scroll ────────────────────────
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
