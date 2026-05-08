@@ -658,7 +658,7 @@
     /* Individual poster tile */
     .ptile {
       flex: 0 0 auto;
-      width: clamp(110px, 10vw, 160px);
+      width: clamp(80px, 8vw, 120px);
       position: relative;
       overflow: hidden;
       background: var(--charcoal);
@@ -758,7 +758,7 @@
     /* Big FILMOGRAPHY label — Omari style */
     .filmography-big-label {
       font-family: var(--font-sans);
-      font-size: clamp(2.5rem, 6vw, 5.5rem);
+      font-size: clamp(1.8rem, 4vw, 3.5rem);
       font-weight: 200;
       letter-spacing: 0.22em;
       text-transform: uppercase;
@@ -771,8 +771,8 @@
     ───────────────────────────────────────────────────── */
     #director-break {
       position: relative;
-      height: 45vh;
-      min-height: 320px;
+      height: 50vh;
+      min-height: 340px;
       overflow: hidden;
     }
     .director-bg {
@@ -783,7 +783,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 15%;
+      object-position: top center;
       filter: brightness(0.55) grayscale(15%);
     }
     .director-overlay {
@@ -975,7 +975,7 @@
       #about { display: block; }
       #voice { grid-template-columns: 1fr; gap: 3rem; }
       #contact { grid-template-columns: 1fr; gap: 4rem; }
-      .ptile { width: clamp(100px, 12vw, 140px); }
+      .ptile { width: clamp(75px, 9vw, 100px); }
     }
 
     @media (max-width: 768px) {
@@ -985,8 +985,8 @@
       .form-row { grid-template-columns: 1fr; }
       footer { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
       .about-images { padding-bottom: 0; }
-      .ptile { width: 90px; }
-      .filmography-big-label { font-size: clamp(1.8rem, 8vw, 3.5rem); }
+      .ptile { width: 70px; }
+      .filmography-big-label { font-size: clamp(1.5rem, 6vw, 2.5rem); }
     }
   </style>
 </head>
